@@ -1,4 +1,3 @@
-package finalProject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,9 +6,8 @@ import java.util.ArrayList;
 
 /**
  * Class that stores and writes the elements of a matrix to a file in csv format
- * 
- * @author brown8jt - Josh Brown
- * @since 4/18/2019
+ *
+ * @author Josh Brown
  *
  */
 public class Write implements MatrixProcessor {
@@ -22,7 +20,7 @@ public class Write implements MatrixProcessor {
 
 	/**
 	 * Public constructor that takes a matrix processor and a string as parameters
-	 * 
+	 *
 	 * @param mp
 	 *            - MatrixProcessor to write to file
 	 * @param fileName
@@ -30,21 +28,17 @@ public class Write implements MatrixProcessor {
 	 */
 	public Write(MatrixProcessor mp, String fileName) {
 
-		// initialize matrix
 		this.matrix = mp.getList();
-
-		// set dimensions of matrix
 		this.rows = this.matrix.size();
 		this.cols = this.matrix.get(0).size();
 
-		// write matrix to file
 		writeToFile(fileName);
 
 	}
 
 	/**
 	 * Method used to write matrix to file location
-	 * 
+	 *
 	 * @param fileName
 	 *            - file location name
 	 */
@@ -75,24 +69,15 @@ public class Write implements MatrixProcessor {
 
 		}
 
-		// create file to export to
 		File output = new File(fileName);
-
-		// file writer object
 		FileWriter fw;
 
 		try {
 
 			// found file with given name
 			fw = new FileWriter(output);
-
-			// write string matrix to file
 			fw.write(sb.toString());
-
-			// flush stream
 			fw.flush();
-
-			// close stream
 			fw.close();
 
 		} catch (IOException e) {
@@ -104,7 +89,7 @@ public class Write implements MatrixProcessor {
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -113,7 +98,7 @@ public class Write implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {
@@ -122,7 +107,7 @@ public class Write implements MatrixProcessor {
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override

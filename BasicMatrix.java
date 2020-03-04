@@ -1,4 +1,3 @@
-package finalProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,23 +5,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Custom error thrown when a column in the matrix is blank.
- * 
- * @author brown8jt - Josh Brown
- *
- */
-@SuppressWarnings("serial")
-class InvalidMatrixShapeException extends Exception {
-	public InvalidMatrixShapeException(String errorMsg) {
-		super(errorMsg);
-	}
-}
-
-/**
  * Represents a basic matrix which elements are strings.
- * 
- * @author brown8jt - Josh Brown
- * @since 4/16/2019
+ *
+ * @author Josh Brown
  */
 public class BasicMatrix implements MatrixProcessor {
 
@@ -34,7 +19,7 @@ public class BasicMatrix implements MatrixProcessor {
 
 	/**
 	 * Public constructor for basic matrix
-	 * 
+	 *
 	 * @param fileName
 	 *            - String representing the system location of the file to be read
 	 *            in
@@ -49,7 +34,7 @@ public class BasicMatrix implements MatrixProcessor {
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -58,7 +43,7 @@ public class BasicMatrix implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {
@@ -67,7 +52,7 @@ public class BasicMatrix implements MatrixProcessor {
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override
@@ -115,7 +100,7 @@ public class BasicMatrix implements MatrixProcessor {
 
 	/**
 	 * Loads a csv file into the matrix
-	 * 
+	 *
 	 * @param fileName
 	 *            - String representing the system location of the csv to be loaded
 	 *            in
@@ -126,36 +111,30 @@ public class BasicMatrix implements MatrixProcessor {
 	 */
 	private void loadCSV(String fileName) {
 
-		// create file object with given file name
 		File file = new File(fileName);
-
-		// create file scanner
 		Scanner fiSc = null;
 
 		// try to create scanner for file
 		try {
-			
-			// successfully created scanner
+
+			// found file
 			fiSc = new Scanner(file);
-			
+
 		} catch (FileNotFoundException e) {
-			
+
 			// could not find file
 			System.out.println(e.toString());
 			return;
-			
+
 		}
-		
+
 		// loop through entire file
 		while (fiSc.hasNextLine()) {
 
 			// try to load matrix
 			try {
 
-				// get the next line in file
 				String[] currLine = fiSc.nextLine().split(",");
-
-				// create new array list to be added to the matrix
 				ArrayList<String> newRow = new ArrayList<String>();
 
 				// check if any entries are missing
@@ -182,20 +161,15 @@ public class BasicMatrix implements MatrixProcessor {
 
 			} catch (InvalidMatrixShapeException e) {
 
-				// print error to console
 				System.err.println(e.toString());
-				
-				// break out of method
 				return;
 
 			}
 
 		}
-		
-		// close file scanner
+
 		fiSc.close();
 
-		// set dimensions of matrix
 		this.rows = this.matrix.size();
 		this.cols = this.matrix.get(0).size();
 

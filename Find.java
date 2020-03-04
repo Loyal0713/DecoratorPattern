@@ -1,11 +1,10 @@
-package finalProject;
 
 import java.util.ArrayList;
 
 /**
  * Class representing a 2d matrix where all elements contain a given string
- * 
- * @author brown8jt - Josh Brown
+ *
+ * @author Josh Brown
  *
  */
 public class Find implements MatrixProcessor {
@@ -28,17 +27,13 @@ public class Find implements MatrixProcessor {
 
 				// check if text contains the pattern
 				if (elementInMatrix.toLowerCase().contains(pattern.toLowerCase())) {
-
-					// found the pattern; add row to matrix
 					this.matrix.add(mp.getList().get(i));
-
 				}
 
 			}
 
 		}
-		
-		// initialize dimensions
+
 		this.rows = this.matrix.size();
 		this.cols = this.matrix.get(0).size();
 
@@ -46,7 +41,7 @@ public class Find implements MatrixProcessor {
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override
@@ -94,7 +89,7 @@ public class Find implements MatrixProcessor {
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -103,7 +98,7 @@ public class Find implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {

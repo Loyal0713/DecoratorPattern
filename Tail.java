@@ -1,13 +1,11 @@
-package finalProject;
 
 import java.util.ArrayList;
 
 /**
  * Class that represents the tail of a matrix where the tail is the bottom x
  * rows of a given matrix
- * 
- * @author brown8jt - Josh Brown
- * @since 4/16/2019
+ *
+ * @author Josh Brown
  *
  */
 public class Tail implements MatrixProcessor {
@@ -20,7 +18,7 @@ public class Tail implements MatrixProcessor {
 
 	/**
 	 * Public constructor that takes a matrix processor and an integer as parameters
-	 * 
+	 *
 	 * @param mp
 	 *            - Matrix to be used
 	 * @param size
@@ -29,22 +27,31 @@ public class Tail implements MatrixProcessor {
 	 */
 	public Tail(MatrixProcessor mp, int size) {
 
-		// fill matrix with bottom "size" rows
-		for (int i = mp.getList().size() - size; i < mp.getList().size(); i++) {
+		try {
 
-			this.matrix.add(mp.getList().get(i));
+			if (size < 0 || size > mp.getNumRows() - 1) {
+				throw new InvalidValueException("Size is not in matrix range");
+			}
 
+			// fill matrix with bottom "size" rows
+			for (int i = mp.getList().size() - size; i < mp.getList().size(); i++) {
+
+				this.matrix.add(mp.getList().get(i));
+
+			}
+
+			this.rows = this.matrix.size();
+			this.cols = this.matrix.get(0).size();
+
+		} catch (InvalidValueException e) {
+			System.err.println(e.toString());
 		}
-		
-		// initialize dimensions
-		this.rows = this.matrix.size();
-		this.cols = this.matrix.get(0).size();
 
 	}
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -53,7 +60,7 @@ public class Tail implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {
@@ -62,7 +69,7 @@ public class Tail implements MatrixProcessor {
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override

@@ -1,19 +1,10 @@
-package finalProject;
 
 import java.util.ArrayList;
 
-class InvalidValueException extends Exception {
-	public InvalidValueException(String errMsg) {
-		super(errMsg);
-	}
-
-}
-
 /**
  * Class representing a set of columns taken from a given matrix
- * 
- * @author brown8jt - Josh Brown
- * @since 4/18/2019
+ *
+ * @author Josh Brown
  *
  */
 public class GetColumn implements MatrixProcessor {
@@ -27,7 +18,7 @@ public class GetColumn implements MatrixProcessor {
 	/**
 	 * Public constructor that takes a matrix processor and multiple integers as
 	 * parameters
-	 * 
+	 *
 	 * @param mp
 	 *            - Matrix processor to be used
 	 * @param cols
@@ -40,45 +31,38 @@ public class GetColumn implements MatrixProcessor {
 			// loop through all rows
 			for (int i = 0; i < mp.getNumRows(); i++) {
 
-				// column index is out of bounds of matrix
-				if (cols[i] - 1 > this.getNumCols()) {
-					throw new InvalidValueException("Column index is out of bounds: " + cols[i]);
-				}
-
 				// create column array
 				ArrayList<String> col = new ArrayList<String>();
 
 				// loop through each given column
 				for (int j = 0; j < cols.length; j++) {
 
-					// add element to col
+					// column index is out of bounds of matrix
+					if (cols[j] > mp.getNumCols()) {
+						throw new InvalidValueException("Column index is out of bounds: " + cols[j]);
+					}
+
 					col.add(mp.getList().get(i).get(cols[j]));
 
 				}
 
-				// add col to matrix
 				this.matrix.add(col);
 
 			}
-			
-			// initialize dimensions
+
 			this.rows = this.matrix.size();
 			this.cols = this.matrix.get(0).size();
 
 		} catch (InvalidValueException e) {
-
 			System.err.println(e.toString());
 			return;
-
 		}
-
-
 
 	}
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override
@@ -100,9 +84,7 @@ public class GetColumn implements MatrixProcessor {
 				System.out.printf("%-15s", matrix.get(i).get(j));
 
 			}
-
 			System.out.println();
-
 		}
 
 	}
@@ -126,7 +108,7 @@ public class GetColumn implements MatrixProcessor {
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -135,7 +117,7 @@ public class GetColumn implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {

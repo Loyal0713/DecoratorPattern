@@ -1,4 +1,3 @@
-package finalProject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,9 +5,8 @@ import java.util.Comparator;
 
 /**
  * Class that represents a sorted matrix based on a given column index
- * 
- * @author brown8jt - Josh Brown
- * @since 4/18/2019
+ *
+ * @author Josh Brown
  *
  */
 public class Sort implements MatrixProcessor {
@@ -21,26 +19,39 @@ public class Sort implements MatrixProcessor {
 
 	/**
 	 * Public constructor that takes a MatrixProcessor and an integer as parameters
-	 * @param mp - Matrix to sort
-	 * @param i - Integer representing which column index to sort the matrix by
+	 *
+	 * @param mp
+	 *            - Matrix to sort
+	 * @param i
+	 *            - Integer representing which column index to sort the matrix by
 	 */
 	public Sort(MatrixProcessor mp, int i) {
 
-		// initialize matrix
-		this.matrix = mp.getList();
+		try {
 
-		// set dimensions of matrix
-		this.rows = this.matrix.size();
-		this.cols = this.matrix.get(0).size();
+			if (i < 0 || i > mp.getNumCols() - 1) {
+				throw new InvalidValueException("Size is not in matrix range");
+			}
 
-		// sort matrix
-		this.sort(i);
+			this.matrix = mp.getList();
+			this.rows = this.matrix.size();
+			this.cols = this.matrix.get(0).size();
+			this.sort(i);
+
+		} catch (InvalidValueException e) {
+
+			System.err.println(e.toString());
+			return;
+
+		}
 
 	}
 
 	/**
 	 * This method sorts the matrix using given index
-	 * @param i - Integer representing column index
+	 *
+	 * @param i
+	 *            - Integer representing column index
 	 */
 	private void sort(int i) {
 
@@ -62,7 +73,7 @@ public class Sort implements MatrixProcessor {
 
 	/**
 	 * Returns the number of rows in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of rows
 	 */
 	public int getNumRows() {
@@ -71,7 +82,7 @@ public class Sort implements MatrixProcessor {
 
 	/**
 	 * Returns the number of columns in the matrix
-	 * 
+	 *
 	 * @return - integer representing the number of cols
 	 */
 	public int getNumCols() {
@@ -80,7 +91,7 @@ public class Sort implements MatrixProcessor {
 
 	/**
 	 * Returns the matrix
-	 * 
+	 *
 	 * @return returns an array list of array lists representing the 2d matrix
 	 */
 	@Override
